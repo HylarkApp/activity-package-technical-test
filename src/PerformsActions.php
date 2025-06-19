@@ -6,5 +6,8 @@ namespace Activity;
 
 trait PerformsActions
 {
-    // TODO: Write trait for models that perform actions, e.g. User
+    public function performedActions()
+    {
+        return $this->morphMany(Action::class, 'performer');
+    }
 }
