@@ -87,3 +87,13 @@ There is no way to know if this test is completed by AI or not, but we know what
 - https://laravel.com/docs/9.x/eloquent#events-using-closures
 - https://www.archybold.com/blog/post/booting-eloquent-model-traits
 - https://laravel.com/docs/9.x/eloquent-relationships
+
+- Answers:
+- 1. What aspects of this package could be customised with a config file? Table name, performer field, allow guest logging, which models and actions to track.
+  2. How would you go about storing more information about the event (i.e. what fields were updated, from what to what)? JSON field with before/after data, like: versions: example in the code.
+  3. How would you increase the security of the package, ensuring only authorised performers can see the activity for an item? Policies or gates, or filter by ownership.
+  4. If a performer or item is deleted from the system, what would their actions say in their summary? How could this be improved? Saving performer’s name (example in the code), or soft deletes.
+  5. Suppose the developer wants to record other types of actions that are more specific, i.e. "Task was completed by ____" how could that be implemented? We can expand action types or/and add a custom description.
+  6. What should be considered when developing the package to scale? Add indexes, removing very old records (unknown performers for example), caching, paginating the response.
+  7. What should happen when an event is triggered but there is no authenticated user, e.g. in a queued job? Log null performer or mark as system/cron (example in code: 'performer_id' => $user->id ?? null).
+  8. If you had more time to work on this, how would you improve it? Queues for logging, add a log viewer UI, webhooks for activity events (settings in config file). 
